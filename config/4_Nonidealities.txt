@@ -50,3 +50,13 @@ TrajectoryOffset=0,0,0
 InitialPos=-2,-1,-1
 TrajectoryOffset=0,-1,0
 cy=-.05
+
+#[QuadControlParams]
+#kpPosZ = 5
+#kpVelZ = 20
+
+#kpPosXY = 5
+#kpVelXY = 10
+
+#kpBank = 23
+#kpPQR = 75, 75, 10
