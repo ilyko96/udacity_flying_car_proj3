@@ -5,7 +5,7 @@ This is the readme/writeup for the "FCND-Controls-CPP" C++ project.
 For easy navigation throughout this document, here is an outline:
 
  - [Rubric Points](#rubric)
-     - [Results](flight-evaluation)
+     - [Results](#3-flight-evaluation)
  - [Extra Challenge 1](#extra-Challenge-1)
  - [Extra Challenge 2](#extra-Challenge-2)
 
@@ -223,14 +223,14 @@ F3 = -tx - ty - tz + F;
 F4 = tx - ty + tz + F;
 ```
 
-### 3. Flight Evaluation [flight-evaluation] ###
+### 3. Flight Evaluation ###
 
 #### 3.1. Your C++ controller is successfully able to fly the provided test trajectory and visually passes inspection of the scenarios leading up to the test trajectory.
 <sub>_Ensure that in each scenario the drone looks stable and performs the required task. Specifically check that the student's controller is able to handle the non-linearities of scenario 4 (all three drones in the scenario should be able to perform the required task with the same control gains used)._</sub>
 
 In all scenarios (#1-5) drones successfully pass all required tasks.
 
-All scenario-specific config files stay untouched (except for 5<sup>th</sup> scenario, more on this in [5_TrajectoryFollow](scenario-5_trajectoryfollow) section).
+All scenario-specific config files stay untouched (except for 5<sup>th</sup> scenario, more on this in [5_TrajectoryFollow](#scenario-5_trajectoryfollow) section).
 In `QuadControlParams.txt` only `Mass` parameter was changed (as stated in [testing task fomulation](https://github.com/udacity/FCND-Controls-CPP#testing-it-out))
 and all PID gains.
 
@@ -243,21 +243,21 @@ Changing `Mass` from `0.4` to `0.5` solves hover problem.
 
 In this test quad has to stabilize its `roll` and `omega.x` parameters for specified amount of time.
 
-![1_Intro](img/2_AttitudeControl.gif)
+![2_AttitudeControl](img/2_AttitudeControl.gif)
 
 ##### Scenario 3_PositionControl
 
 In this test 2 quads have to reach specified positions (x-coordinate and yaw)
 
-![1_Intro](img/3_PositionControl_T.gif)
-
+![3_PositionControl_T](img/3_PositionControl.gif)
+    
 ##### Scenario 4_Nonidealities
 
 This test checks how quads behaves with non-ideal parameters (such as shifted CM or overweight)
 
-![1_Intro](img/4_Nonidealities.gif)
+![4_Nonidealities](img/4_Nonidealities.gif)
 
-##### Scenario 5_TrajectoryFollow [scenario-5_trajectoryfollow] #####
+##### Scenario 5_TrajectoryFollow #####
 
 In this scenario drone has to follow "8" shaped trajectory.
 
@@ -269,7 +269,7 @@ It increases the speed of trajectory by 50% (meaning, that first quad has to mov
 In order to increase the response of the first quad the `5_TrajectoryFollow.txt` file has been changed.
 The changes are that Quad1 loads `QuadControlParamsFast` configuration with more aggressive PID gains.
 
-![1_Intro](img/5_TrajectoryFollow.gif)
+![5_TrajectoryFollow](img/5_TrajectoryFollow.gif)
 
 
 ## Extra Challenge 1
@@ -292,7 +292,7 @@ which means that velocity part of PID-controller equation is low,
 and proportional and integral parts are making bigger impacts.
 (or intuitively differential part does not try to stop quad at each trajectory point).
  
- Please, refer to description of [5_TrajectoryFollow](scenario-5_trajectoryfollow) in Results part to check
+ Please, refer to description of [5_TrajectoryFollow](#scenario-5_trajectoryfollow) in Results part to check
  what changes have been performed in 5<sup>th</sup> scenario relating this challenge.
  
  
@@ -315,5 +315,5 @@ This is necessary because we will need to somehow merge rates proposed by Attitu
 
 <sub>_2. How about trying to fly this trajectory as quickly as possible (but within following threshold)!_</sub>
 
-Please, check the description of [5_TrajectoryFollow](scenario-5_trajectoryfollow) in Results part,
+Please, check the description of [5_TrajectoryFollow](#scenario-5_trajectoryfollow) in Results part,
 where the 1<sup>st</sup> quad tracks 1.5 times faster trajectory.
