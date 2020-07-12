@@ -19,20 +19,20 @@ minMotorThrust = .1
 maxMotorThrust = 4.5
 
 # Position control gains
-kpPosXY = 17
-kpPosZ = 20
-KiPosZ = 50
+kpPosXY = 25
+kpPosZ = 40
+KiPosZ = 40
 
 # Velocity control gains
-kpVelXY = 8
-kpVelZ = 40
+kpVelXY = 11
+kpVelZ = 12
 
 # Angle control gains
-kpBank = 30
+kpBank = 11
 kpYaw = 4
 
 # Angle rate gains
-kpPQR = 75, 75, 10
+kpPQR = 71, 71, 10
 
 # limits
 maxAscentRate = 5
@@ -42,18 +42,35 @@ maxHorizAccel = 12
 maxTiltAngle = .7
 
 
+### Original rates
 
-# Original gains
+# Physical properties
+#Mass = 0.4
+#L = 0.17
+#Ixx = 0.0023
+#Iyy = 0.0023
+#Izz = 0.0046
+#kappa = 0.016
+#minMotorThrust = .1
+#maxMotorThrust = 4.5
+
+# Position control gains
 #kpPosXY = 1
 #kpPosZ = 1
 #KiPosZ = 20
 
+# Velocity control gains
 #kpVelXY = 4
 #kpVelZ = 4
 
+# Angle control gains
+#kpBank = 5
+#kpYaw = 1
+
+# Angle rate gains
 #kpPQR = 23, 23, 5
 
-# Original limits
+# limits
 #maxAscentRate = 5
 #maxDescentRate = 2
 #maxSpeedXY = 5

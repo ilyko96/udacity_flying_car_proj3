@@ -195,14 +195,14 @@ V3F QuadControl::RollPitchControl(V3F accelCmd, Quaternion<float> attitude, floa
   float b_c_x = accelCmd[0] / c;
   float b_c_y = accelCmd[1] / c;
 
+  b_c_x = CONSTRAIN(b_c_x, -maxTiltAngle, maxTiltAngle);
+  b_c_y = CONSTRAIN(b_c_y, -maxTiltAngle, maxTiltAngle);
+  
   float b_c_dot_x = kpBank * (b_c_x - b_a_x);
   float b_c_dot_y = kpBank * (b_c_y - b_a_y);
 
   pqrCmd.x = (b_c_dot_x * R(1, 0) - b_c_dot_y * R(0, 0)) / R(2, 2);
   pqrCmd.y = (b_c_dot_x * R(1, 1) - b_c_dot_y * R(0, 1)) / R(2, 2);
-
-  pqrCmd.x = CONSTRAIN(pqrCmd.x, -maxSpeedXY, maxSpeedXY);
-  pqrCmd.y = CONSTRAIN(pqrCmd.y, -maxSpeedXY, maxSpeedXY);
 
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 
@@ -283,12 +283,17 @@ V3F QuadControl::LateralPositionControl(V3F posCmd, V3F velCmd, V3F pos, V3F vel
 
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
 
+  float velCmdMag = velCmd.mag();
+  if (velCmdMag > maxSpeedXY)
+      velCmd *= maxSpeedXY / velCmdMag;
+
   V3F ePos = posCmd - pos;
   V3F eVel = velCmd - vel;
   accelCmd += kpPosXY * ePos + kpVelXY * eVel;
 
-  accelCmd.x = CONSTRAIN(accelCmd.x, -maxAccelXY, maxAccelXY);
-  accelCmd.y = CONSTRAIN(accelCmd.y, -maxAccelXY, maxAccelXY);
+  float accelCmdMag = accelCmd.mag();
+  if (accelCmdMag > maxAccelXY)
+      accelCmd *= maxAccelXY / accelCmdMag;
 
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 
@@ -311,7 +316,7 @@ float QuadControl::YawControl(float yawCmd, float yaw)
   float yawRateCmd=0;
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
 
-  yawRateCmd = fmodf(kpYaw * (yawCmd - yaw), M_PI);
+  yawRateCmd = kpYaw * (fmodf(yawCmd, M_PI) - fmodf(yaw, M_PI));
 
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 

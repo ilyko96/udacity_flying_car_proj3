@@ -26,10 +26,6 @@ INCLUDE QuadControlParams.txt
 INCLUDE Simulation.txt
 
 # Vehicle-specific config
-[Quad1:Quad]
-InitialPos=0,1,-1
-TrajectoryOffset = 0,1.5,0
-
 [Quad2:Quad]
 InitialPos=0,-1,-1
 TrajectoryOffset=0,-1.5,0
@@ -37,3 +33,41 @@ ControlConfig = QuadControlParamsFF
 
 [QuadControlParamsFF:QuadControlParams]
 Trajectory=traj/FigureEightFF.txt
+
+[Quad1:Quad]
+InitialPos=0,1,-1
+TrajectoryOffset = 0,1.5,0
+ControlConfig = QuadControlParamsFast
+
+[QuadControlParamsFast:QuadControlParams]
+kpPosXY = 35
+kpPosZ = 35
+KiPosZ = 50
+
+# Velocity control gains
+kpVelXY = 17
+kpVelZ = 26
+
+# Angle control gains
+kpBank = 15
+kpYaw = 4
+
+# Angle rate gains
+kpPQR = 75, 75, 10
+
+
+
+#kpPosXY = 25
+#kpPosZ = 40
+#KiPosZ = 40
+
+# Velocity control gains
+#kpVelXY = 11
+#kpVelZ = 12
+
+# Angle control gains
+#kpBank = 11
+#kpYaw = 4
+
+# Angle rate gains
+#kpPQR = 71, 71, 10
