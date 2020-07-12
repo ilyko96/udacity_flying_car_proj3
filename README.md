@@ -4,7 +4,10 @@ This is the readme/writeup for the "FCND-Controls-CPP" C++ project.
 
 For easy navigation throughout this document, here is an outline:
 
- - [Rubric Points](#Rubric)
+ - [Rubric Points](#rubric)
+     - [Results](flight-evaluation)
+ - [Extra Challenge 1](#extra-Challenge-1)
+ - [Extra Challenge 2](#extra-Challenge-2)
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1643/view) points
@@ -220,14 +223,14 @@ F3 = -tx - ty - tz + F;
 F4 = tx - ty + tz + F;
 ```
 
-### 3. Flight Evaluation
+### 3. Flight Evaluation [flight-evaluation] ###
 
 #### 3.1. Your C++ controller is successfully able to fly the provided test trajectory and visually passes inspection of the scenarios leading up to the test trajectory.
 <sub>_Ensure that in each scenario the drone looks stable and performs the required task. Specifically check that the student's controller is able to handle the non-linearities of scenario 4 (all three drones in the scenario should be able to perform the required task with the same control gains used)._</sub>
 
 In all scenarios (#1-5) drones successfully pass all required tasks.
 
-All scenario-specific config files stay untouched (except for 5<sup>th</sup> scenario, more on this in [TODO: speed up]).
+All scenario-specific config files stay untouched (except for 5<sup>th</sup> scenario, more on this in [5_TrajectoryFollow](scenario-5_trajectoryfollow) section).
 In `QuadControlParams.txt` only `Mass` parameter was changed (as stated in [testing task fomulation](https://github.com/udacity/FCND-Controls-CPP#testing-it-out))
 and all PID gains.
 
@@ -254,7 +257,7 @@ This test checks how quads behaves with non-ideal parameters (such as shifted CM
 
 ![1_Intro](img/4_Nonidealities.gif)
 
-##### Scenario 5_TrajectoryFollow
+##### Scenario 5_TrajectoryFollow [scenario-5_trajectoryfollow] #####
 
 In this scenario drone has to follow "8" shaped trajectory.
 
@@ -289,7 +292,7 @@ which means that velocity part of PID-controller equation is low,
 and proportional and integral parts are making bigger impacts.
 (or intuitively differential part does not try to stop quad at each trajectory point).
  
- Please, refer to description of **Scenario 5_TrajectoryFollow** in Results part to check
+ Please, refer to description of [5_TrajectoryFollow](scenario-5_trajectoryfollow) in Results part to check
  what changes have been performed in 5<sup>th</sup> scenario relating this challenge.
  
  
@@ -312,5 +315,5 @@ This is necessary because we will need to somehow merge rates proposed by Attitu
 
 <sub>_2. How about trying to fly this trajectory as quickly as possible (but within following threshold)!_</sub>
 
-Please, check the description of **Scenario 5_TrajectoryFollow** in Results part,
+Please, check the description of [5_TrajectoryFollow](scenario-5_trajectoryfollow) in Results part,
 where the 1<sup>st</sup> quad tracks 1.5 times faster trajectory.
