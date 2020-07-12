@@ -316,7 +316,7 @@ float QuadControl::YawControl(float yawCmd, float yaw)
   float yawRateCmd=0;
   ////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
 
-  yawRateCmd = kpYaw * (fmodf(yawCmd, M_PI) - fmodf(yaw, M_PI));
+  yawRateCmd = kpYaw * fmodf(yawCmd - yaw, M_PI);
 
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 

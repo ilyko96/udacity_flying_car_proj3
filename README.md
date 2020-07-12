@@ -126,12 +126,12 @@ The Z component of both is set to 0 outside of 'student code' block of code.
 Function `YawControl()` in file `QuadControl.cpp` is responsible for the yaw controller.
 
 ```c++
-yawRateCmd = kpYaw * (fmodf(yawCmd, M_PI) - fmodf(yaw, M_PI));
+yawRateCmd = kpYaw * fmodf(yawCmd - yaw, M_PI);
 ```
 
 This is a very basic P controller for controlling yaw of the quad.
 
-`fmodf()` function is used to unwrap angles to the range `(-PI, PI)`.
+`fmodf()` function is used to unwrap angle to the range `(-PI, PI)`.
 
 
 #### 2.6 Implement calculating the motor commands given commanded thrust and moments in C++.
@@ -263,7 +263,7 @@ This test checks how quads behaves with non-ideal parameters (such as shifted CM
 
 In this scenario drone has to follow "8" shaped trajectory.
 
-The second quad uses `FigureEightFF.txt` trajectory, which is given with project.
+The second quad uses `FigureEightFF.txt` trajectory, which is given as a project file.
 
 The first quad uses `FigureEight.txt` trajectory, which has been generated with `MakePeriodicTrajectory.py` script.
 It increases the speed of trajectory by 50% (meaning, that first quad has to move 1.5 times faster than the second one).
@@ -284,7 +284,9 @@ Velocity is calculated by differentiating position, namely, `velocity = (pos_cur
 
 <sub>_2. Generate a new FigureEightFF.txt that has velocity terms. Did the velocity-specified trajectory make a difference? Why?_</sub>
 
-The `FigureEightFF.txt` is generated with velocity terms followed by position terms.
+A new `FigureEightFF.txt` has been generated with `MakePeriodicTrajectory.py` script and saved as `FigureEight.txt`.
+Each line contains the velocity terms followed by position terms.
+
 Yes, velocity-specified trajectory highly increases the quad's following accuracy.
 This is happening because these velocities are used as inputs to **Altitude Controller**
 and **Lateral Position Controller** and "tells" quad which speed it is going to have at this trajectory point
@@ -292,7 +294,7 @@ and **Lateral Position Controller** and "tells" quad which speed it is going to 
 From math's point of view: _velocityCmd_ vector is going to be closer to _velocityActual_ vector,
 which means that velocity part of PID-controller equation is low,
 and proportional and integral parts are making bigger impacts.
-(or intuitively differential part does not try to stop quad at each trajectory point).
+(or intuitively differential part does not impact much trying to stop quad at each trajectory point).
  
  Please, refer to description of [5_TrajectoryFollow](#scenario-5_trajectoryfollow) in Results part to check
  what changes have been performed in 5<sup>th</sup> scenario relating this challenge.
@@ -301,15 +303,15 @@ and proportional and integral parts are making bigger impacts.
 ## Extra Challenge 2
 <sub>_1. For flying a trajectory, is there a way to provide even more information for even better tracking?_</sub>
 
-Yes, the acceleration can be calculated for each trajectory point.
+Yes, e.g. the acceleration can be calculated for each trajectory point.
 It will be passed into **Altitude Controller** and **Lateral Position Controller**
 (the same way as velocity information) and used as Feed Forward term in PID equation.
 
 Another option is to calculate vehicle's attitude at each point.
 This will affect quad's yaw in current implementation.
 The result will as quad persuades trajectory points with its front side.
-However, this is not going to increase the accuracy of tracking,
-rather than it is one another option how quad can follow trajectory points.
+However, this is not going to increase the accuracy of tracking (at least much),
+rather than it is a one another option how quad can follow trajectory points.
 
 Specifying rotation angles and/or rotation rates might somehow help quad predict its best attitude in each trajectory point.
 However, in order to make use of this information we need to change the structure of the whole quad controller.
