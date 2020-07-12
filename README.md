@@ -2,6 +2,8 @@
 
 This is the readme/writeup for the "FCND-Controls-CPP" C++ project.
 
+The original README.md is available using [this link](README_original.md)
+
 For easy navigation throughout this document, here is an outline:
 
  - [Rubric Points](#rubric)
