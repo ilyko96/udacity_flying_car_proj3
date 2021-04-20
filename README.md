@@ -1,5 +1,7 @@
 # The "FCND-Controls-CPP" C++ Project Writeup #
 
+### [\[Proj #1\] Backyard Flyer](https://github.com/wi1k1n/udacity_flying_car_proj1) | [\[Proj #2\] 3D Motion Planner](https://github.com/wi1k1n/udacity_flying_car_proj2) | [Proj #3] Quad Controller
+
 This is the readme/writeup for the "FCND-Controls-CPP" C++ project.
 
 The original README.md is available [here](README_original.md)
